@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvchk5r14oxvq"]
+
+[ext_resource type="Script" path="res://Scrips/PlayerController.cs" id="1_cgw80"]
+[ext_resource type="Texture2D" uid="uid://bbu1e7mw0p6ae" path="res://Assets/ship-1.png" id="1_xg455"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hhnhg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xg455")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_42y8y"]
+size = Vector2(88, 69)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_cgw80")
+speed = 250
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hhnhg")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 10.5)
+shape = SubResource("RectangleShape2D_42y8y")
