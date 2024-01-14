@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bs6qe8oxhya5y"]
+[gd_scene load_steps=5 format=3 uid="uid://bs6qe8oxhya5y"]
 
 [ext_resource type="PackedScene" uid="uid://cvchk5r14oxvq" path="res://Scenes/Objects/player.tscn" id="1_06etr"]
 [ext_resource type="PackedScene" uid="uid://bxx5gs64rff5h" path="res://Scenes/Objects/scenario.tscn" id="2_7yka7"]
+[ext_resource type="PackedScene" uid="uid://dyuu3q56lgjp0" path="res://Scenes/Objects/enemy.tscn" id="3_14v6u"]
+[ext_resource type="Script" path="res://Scrips/EnemyRespawn.cs" id="3_eom78"]
 
 [node name="Main" type="Node"]
 
@@ -10,3 +12,9 @@ speed = 0.5
 
 [node name="Player" parent="." instance=ExtResource("1_06etr")]
 position = Vector2(240, 680)
+
+[node name="EnemyRespawn" type="Node" parent="."]
+script = ExtResource("3_eom78")
+enemy = ExtResource("3_14v6u")
+
+[node name="SpawnEnemy" type="Marker2D" parent="EnemyRespawn"]

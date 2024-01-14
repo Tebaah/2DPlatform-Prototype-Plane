@@ -1,21 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc3kavk2cry18"]
+[gd_scene load_steps=4 format=3 uid="uid://34spkjkomh3v"]
 
 [ext_resource type="Script" path="res://Scrips/BulletController.cs" id="1_a8ej4"]
 [ext_resource type="Texture2D" uid="uid://c2lblw7cb3ey2" path="res://Assets/kenney_pixel-shmup/Tiles/tile_0000.png" id="1_wlroe"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iwmlb"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4c6js"]
 radius = 3.0
 height = 16.0
 
-[node name="Bullet" type="Node"]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(221, 651)
+[node name="Bullet" type="CharacterBody2D"]
+position = Vector2(227, 653)
 script = ExtResource("1_a8ej4")
 speed = 5.0
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_wlroe")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("CapsuleShape2D_iwmlb")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_4c6js")

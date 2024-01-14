@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvchk5r14oxvq"]
+[gd_scene load_steps=6 format=3 uid="uid://cvchk5r14oxvq"]
 
 [ext_resource type="Script" path="res://Scrips/PlayerController.cs" id="1_cgw80"]
+[ext_resource type="PackedScene" uid="uid://34spkjkomh3v" path="res://Scenes/Objects/bullet.tscn" id="2_3n81r"]
 [ext_resource type="Texture2D" uid="uid://cbg1hj8vv8ieo" path="res://Assets/kenney_pixel-shmup/Ships/ship_0014.png" id="2_nhcwi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hhnhg"]
@@ -20,6 +21,7 @@ size = Vector2(28, 13)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cgw80")
 speed = 350
+bullet = ExtResource("2_3n81r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hhnhg")
@@ -28,3 +30,6 @@ animation = &"Idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_42y8y")
+
+[node name="SpawnBullet" type="Marker2D" parent="."]
+position = Vector2(0, -13)

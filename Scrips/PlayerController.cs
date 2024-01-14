@@ -1,28 +1,31 @@
 using Godot;
 using System;
+using System.ComponentModel;
 
 public partial class PlayerController : CharacterBody2D
 {
     // Variables
-    [Export] public int speed;
-    public Vector2 screenSize;
-    public static PackedScene bullet {get;} = GD.Load<PackedScene>("res://Scenes/Objects/bullet.tscn");
+    [Export] public int speed; // Velocidad de la nave
+    public Vector2 screenSize; // Guardar dimensiones de la pantalla
+    [Export] public PackedScene bullet; // Para instanciar la bala
+    private bool _canShoot = true; // Para el temporizador de la bal
+    private Marker2D _spawnBullet; // Nos permite disparar desde una ubicacion
+
+
     // Methods
 
     public override void _Ready()
     {
         screenSize = GetViewportRect().Size;
+        _spawnBullet = GetNode<Marker2D>("SpawnBullet");
     }
 
     public override void _PhysicsProcess(double delta)
     {
         GetInput();
         MoveAndSlide();
+        Shoot();
 
-        if(Input.IsActionJustPressed("space"))
-        {
-            Shoot();
-        }
     }
 
     public void GetInput()
@@ -33,15 +36,32 @@ public partial class PlayerController : CharacterBody2D
         // Aplicamos la velocidad
         Velocity = inputDirection * speed; 
 
-        // Nos movemos al nuevo vector 
+        // Nos movemos al nuevo vector limitando con el borde de la pantalla
         Position = new Vector2(
             x: Mathf.Clamp(Position.X, 0, screenSize.X),
             y: Mathf.Clamp(Position.Y, 0, screenSize.Y));
 
     }
 
-    public void Shoot()
+    public async void Shoot()
     {
-        GD.Print("Shooting!!!");
-    }   
+        if(Input.IsActionJustPressed("space"))
+        {
+            if(_canShoot == true)
+            {
+                // Instancionamos la bala, le damos la posiciion y se agrega como hijo 
+                CharacterBody2D newBullet = (CharacterBody2D)bullet.Instantiate();
+                newBullet.GlobalPosition = _spawnBullet.GlobalPosition;
+                GetParent().AddChild(newBullet);
+                
+                _canShoot = false;
+
+                // Espera 0.5 seg para siguiente disparo
+                await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+                _canShoot = true;
+            }
+        }
+
+    }
+
 }
