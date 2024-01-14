@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbu1e7mw0p6ae"
-path="res://.godot/imported/ship-1.png-db33783476ff59a7e15701c3e40e74d7.ctex"
+uid="uid://divrok8vah2b6"
+path="res://.godot/imported/tile_0074.png-7230a181367d88ea511ae2c6c367421b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ship-1.png"
-dest_files=["res://.godot/imported/ship-1.png-db33783476ff59a7e15701c3e40e74d7.ctex"]
+source_file="res://Assets/kenney_pixel-shmup/Tiles/tile_0074.png"
+dest_files=["res://.godot/imported/tile_0074.png-7230a181367d88ea511ae2c6c367421b.ctex"]
 
 [params]
 
