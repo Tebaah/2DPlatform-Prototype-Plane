@@ -7,6 +7,10 @@ public partial class BulletController : CharacterBody2D
     public override void _PhysicsProcess(double delta)
     {
         Position -= new Vector2(0,speed);
+        if(Position.Y < -20)
+        {
+            QueueFree();
+        }
     }
     public void OnBodyEntered(CharacterBody2D body)
     {

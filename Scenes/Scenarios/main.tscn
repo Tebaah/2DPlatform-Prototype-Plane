@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scrips/EnemyRespawn.cs" id="3_eom78"]
 
 [node name="Main" type="Node"]
+metadata/_edit_horizontal_guides_ = [-20.0]
 
 [node name="Scenario" parent="." instance=ExtResource("2_7yka7")]
 speed = 0.5
