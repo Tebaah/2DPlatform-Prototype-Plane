@@ -20,4 +20,13 @@ public partial class EnemyController : CharacterBody2D
             QueueFree();
         }
     }
+
+    public void OnBodyEnteredShip(CharacterBody2D body)
+    {
+        if(body.IsInGroup("Bullet"))
+        {
+            QueueFree();
+        }
+    }
+
 }
