@@ -10,7 +10,7 @@ public partial class PlayerController : CharacterBody2D
     [Export] public PackedScene bullet; // Para instanciar la bala
     private bool _canShoot = true; // Para el temporizador de la bal
     private Marker2D _spawnBullet; // Nos permite disparar desde una ubicacion
-
+    public bool isAlive = true;
 
     // Methods
 
@@ -62,6 +62,15 @@ public partial class PlayerController : CharacterBody2D
             }
         }
 
+    }
+
+    public void OnBodyEntered(CharacterBody2D body)
+    {
+        if(body.IsInGroup("Enemy"))
+        {
+            isAlive = false;
+            QueueFree();
+        }
     }
 
 }
