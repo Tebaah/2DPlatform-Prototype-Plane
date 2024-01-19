@@ -66,7 +66,7 @@ public partial class PlayerController : CharacterBody2D
 
     public void OnBodyEntered(CharacterBody2D body)
     {
-        if(body.IsInGroup("Enemy"))
+        if(body.IsInGroup("Enemy") || body.IsInGroup("BulletEnemy"))
         {
             isAlive = false;
             QueueFree();

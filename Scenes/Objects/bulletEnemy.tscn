@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://blao88ug3xflp"]
+
+[ext_resource type="Texture2D" uid="uid://d2cataeh8c2w8" path="res://Assets/kenney_pixel-shmup/Tiles/tile_0002.png" id="1_ccinr"]
+[ext_resource type="Script" path="res://Scrips/BulletEnemy.cs" id="1_q0m8v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_svlch"]
+radius = 2.0
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_exohl"]
+radius = 3.0
+height = 14.0
+
+[node name="BulletEnemy" type="CharacterBody2D" groups=["BulletEnemy"]]
+collision_layer = 8
+script = ExtResource("1_q0m8v")
+speed = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ccinr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_svlch")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_exohl")
+
+[connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
