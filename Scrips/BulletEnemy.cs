@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class BulletEnemy : CharacterBody2D
+public partial class BulletEnemy : Area2D
 {
     [Export] public float speed;
 
@@ -14,9 +14,9 @@ public partial class BulletEnemy : CharacterBody2D
         }
     }
 
-    public void OnBodyEntered(CharacterBody2D body)
+    public void OnBodyEntered(Area2D area)
     {
-        if(body.Name == "Player")
+        if(area.Name == "Player")
         {
             QueueFree();
         }

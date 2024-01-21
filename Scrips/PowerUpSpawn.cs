@@ -9,6 +9,7 @@ public partial class PowerUpSpawn : Node
     private Marker2D _spawnPowerUp;
     private bool _canSpawn = true;
     private float _pointX;
+    [Export] public int timeSpawn;
 
     // Methods
 
@@ -30,13 +31,13 @@ public partial class PowerUpSpawn : Node
     {
         if(_canSpawn == true)
         {
-            CharacterBody2D newPowerUp = (CharacterBody2D)powerUp.Instantiate();
+            Area2D newPowerUp = (Area2D)powerUp.Instantiate();
             newPowerUp.GlobalPosition = _spawnPowerUp.GlobalPosition;
             GetParent().AddChild(newPowerUp);
 
             _canSpawn = false;
 
-            await ToSignal(GetTree().CreateTimer(10), "timeout");
+            await ToSignal(GetTree().CreateTimer(timeSpawn), "timeout");
             _canSpawn = true;
         }
     }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class powerUpController : CharacterBody2D
+public partial class PowerUp : Area2D
 {
     [Export] public int speed;
 
@@ -9,6 +9,14 @@ public partial class powerUpController : CharacterBody2D
     {
         Position += new Vector2(0,speed);
         if(Position.Y > 730)
+        {
+            QueueFree();
+        }
+    }
+
+    public void OnBodyEntered(CharacterBody2D body)
+    {
+        if(body.Name == "Player")
         {
             QueueFree();
         }

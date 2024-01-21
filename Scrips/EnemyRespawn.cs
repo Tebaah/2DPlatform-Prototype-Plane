@@ -27,7 +27,7 @@ public partial class EnemyRespawn : Node
     {        
         if(_canSpawn == true)
         {
-            CharacterBody2D newEnemy = (CharacterBody2D)enemy.Instantiate();
+            Area2D newEnemy = (Area2D)enemy.Instantiate();
             newEnemy.GlobalPosition = _spawnEnemy.GlobalPosition;
             GetParent().AddChild(newEnemy);
 

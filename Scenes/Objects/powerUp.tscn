@@ -1,18 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://2eoph58crj0o"]
+[gd_scene load_steps=4 format=3 uid="uid://cm8ps2y18egcd"]
 
 [ext_resource type="Texture2D" uid="uid://ibq6yg6hseei" path="res://Assets/kenney_pixel-shmup/Tiles/tile_0025.png" id="1_bbre2"]
-[ext_resource type="Script" path="res://Scrips/powerUpController.cs" id="1_xy1ku"]
+[ext_resource type="Script" path="res://Scrips/PowerUp.cs" id="1_p0o78"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahelr"]
-size = Vector2(10, 12)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mivpq"]
+size = Vector2(12, 14)
 
-[node name="PowerUp" type="CharacterBody2D" groups=["PowerUp"]]
+[node name="PowerUp" type="Area2D" groups=["PowerUp"]]
 collision_layer = 16
-script = ExtResource("1_xy1ku")
-speed = 2
+script = ExtResource("1_p0o78")
+speed = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_bbre2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ahelr")
+shape = SubResource("RectangleShape2D_mivpq")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

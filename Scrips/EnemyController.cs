@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class EnemyController : CharacterBody2D
+public partial class EnemyController : Area2D
 {
     // Variables
     private float _speed; // Velocidad de movimiento
@@ -10,6 +10,7 @@ public partial class EnemyController : CharacterBody2D
     private bool _canShoot = true; // Nos permite disparar o no 
     private Marker2D _spawnBulletEnemy; // Mira de la nave
     private bool _isDead = false; // Nos permite saber si esta viva o no 
+    private CollisionShape2D _myCollision;
   
     // Methods
     public override void _Ready()
@@ -22,6 +23,7 @@ public partial class EnemyController : CharacterBody2D
         // Inicializamos los componentes
         _spriteController = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         _spawnBulletEnemy = GetNode<Marker2D>("SpawnBullet");
+        _myCollision = GetNode<CollisionShape2D>("CollisionShape2D");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -38,10 +40,11 @@ public partial class EnemyController : CharacterBody2D
         Shoot();
     }
 
-    public async void OnBodyEnteredShip(CharacterBody2D body)
+    public async void OnBodyEnteredShip(Area2D area)
     {
-        if(body.IsInGroup("Bullet"))
+        if(area.IsInGroup("Bullet"))
         {
+            _myCollision.Visible = false;   
             _spriteController.Play("death");
             _isDead = true;
             await ToSignal(GetTree().CreateTimer(0.3),"timeout");
@@ -55,7 +58,7 @@ public partial class EnemyController : CharacterBody2D
         {
             if(_canShoot == true)
             {
-                CharacterBody2D newBulettEnemy = (CharacterBody2D)bulletEnemy.Instantiate();
+                Area2D newBulettEnemy = (Area2D)bulletEnemy.Instantiate();
                 newBulettEnemy.GlobalPosition = _spawnBulletEnemy.GlobalPosition;
                 GetParent().AddChild(newBulettEnemy);
 

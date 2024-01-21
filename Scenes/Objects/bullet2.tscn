@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://vm5ji3g5366a"]
+
+[ext_resource type="Texture2D" uid="uid://qx3f6nx17m1d" path="res://Assets/kenney_pixel-shmup/Tiles/tile_0001.png" id="1_huibq"]
+[ext_resource type="Script" path="res://Scrips/BulletController.cs" id="1_yan51"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ygxk"]
+size = Vector2(14, 16)
+
+[node name="Bullet2" type="Area2D" groups=["Bullet"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_yan51")
+speed = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_huibq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2ygxk")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

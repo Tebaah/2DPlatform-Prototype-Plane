@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvchk5r14oxvq"]
+[gd_scene load_steps=8 format=3 uid="uid://cvchk5r14oxvq"]
 
 [ext_resource type="Script" path="res://Scrips/PlayerController.cs" id="1_cgw80"]
 [ext_resource type="PackedScene" uid="uid://34spkjkomh3v" path="res://Scenes/Objects/bullet.tscn" id="2_3n81r"]
 [ext_resource type="Texture2D" uid="uid://cbg1hj8vv8ieo" path="res://Assets/kenney_pixel-shmup/Ships/ship_0014.png" id="2_nhcwi"]
+[ext_resource type="PackedScene" uid="uid://vm5ji3g5366a" path="res://Scenes/Objects/bullet2.tscn" id="3_6ml3m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hhnhg"]
 animations = [{
@@ -27,7 +28,7 @@ height = 32.0
 collision_mask = 26
 script = ExtResource("1_cgw80")
 speed = 350
-bullet = ExtResource("2_3n81r")
+bullet = Array[PackedScene]([ExtResource("2_3n81r"), ExtResource("3_6ml3m")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hhnhg")
@@ -48,4 +49,5 @@ collision_mask = 26
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_bp8bc")
 
+[connection signal="area_entered" from="Area2D" to="." method="OnAreaEntered"]
 [connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]

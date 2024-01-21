@@ -1,16 +1,16 @@
 using Godot;
 using System;
 
-
 public partial class PlayerController : CharacterBody2D
 {
-    // Variables
+     // Variables
     [Export] public int speed; // Velocidad de la nave
     public Vector2 screenSize; // Guardar dimensiones de la pantalla
-    [Export] public PackedScene bullet; // Para instanciar la bala
+    [Export] public PackedScene[] bullet; // Para instanciar la bala
     private bool _canShoot = true; // Para el temporizador de la bal
     private Marker2D _spawnBullet; // Nos permite disparar desde una ubicacion
     public bool isAlive = true;
+    private int _indexBullet = 0;
 
     // Methods
 
@@ -50,7 +50,7 @@ public partial class PlayerController : CharacterBody2D
             if(_canShoot == true)
             {
                 // Instancionamos la bala, le damos la posiciion y se agrega como hijo 
-                CharacterBody2D newBullet = (CharacterBody2D)bullet.Instantiate();
+                Area2D newBullet = (Area2D)bullet[_indexBullet].Instantiate();
                 newBullet.GlobalPosition = _spawnBullet.GlobalPosition;
                 GetParent().AddChild(newBullet);
                 
@@ -71,10 +71,16 @@ public partial class PlayerController : CharacterBody2D
             isAlive = false;
             QueueFree();
         }
+    }
 
-        if(body.IsInGroup("PowerUp"))
+    public async void OnAreaEntered(Area2D area)
+    {
+        if(area.IsInGroup("PowerUp"))
         {
-            GD.Print("Obtuve un PowerUp");
+            _indexBullet = 1;
+
+            await ToSignal(GetTree().CreateTimer(10), "timeout");
+            _indexBullet = 0;
         }
     }
 

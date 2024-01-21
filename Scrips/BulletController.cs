@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class BulletController : CharacterBody2D
+public partial class BulletController : Area2D
 {
     [Export] public float speed;
     public override void _PhysicsProcess(double delta)

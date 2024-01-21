@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyuu3q56lgjp0"]
+[gd_scene load_steps=7 format=3 uid="uid://dyuu3q56lgjp0"]
 
 [ext_resource type="Script" path="res://Scrips/EnemyController.cs" id="1_6uag5"]
 [ext_resource type="Texture2D" uid="uid://ob7sxptnldjd" path="res://Assets/kenney_pixel-shmup/Ships/ship_0000.png" id="1_p2w5k"]
@@ -28,11 +28,7 @@ animations = [{
 radius = 5.0
 height = 32.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xr50g"]
-radius = 5.0
-height = 32.0
-
-[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Enemy" type="Area2D" groups=["Enemy"]]
 position = Vector2(144, 28)
 collision_layer = 2
 collision_mask = 5
@@ -42,7 +38,7 @@ bulletEnemy = ExtResource("2_dybjb")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_qm4yr")
-animation = &"death"
+animation = &"walk"
 autoplay = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -52,13 +48,4 @@ shape = SubResource("CapsuleShape2D_xl63c")
 [node name="SpawnBullet" type="Marker2D" parent="."]
 position = Vector2(0, 14)
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 2)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_xr50g")
-
-[connection signal="body_entered" from="Area2D" to="." method="OnBodyEnteredShip"]
+[connection signal="area_entered" from="." to="." method="OnBodyEnteredShip"]
