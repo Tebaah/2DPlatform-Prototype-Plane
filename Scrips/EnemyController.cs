@@ -3,29 +3,38 @@ using System;
 
 public partial class EnemyController : CharacterBody2D
 {
-    private float _speed;
-    private AnimatedSprite2D _spriteController;
-    [Export] public PackedScene bulletEnemy;
-    private bool _canShoot = true;
-    private Marker2D _spawnBulletEnemy;
-    private bool _isDead = false;
+    // Variables
+    private float _speed; // Velocidad de movimiento
+    private AnimatedSprite2D _spriteController; // Controlador de animaciones
+    [Export] public PackedScene bulletEnemy; // Municion de la nave
+    private bool _canShoot = true; // Nos permite disparar o no 
+    private Marker2D _spawnBulletEnemy; // Mira de la nave
+    private bool _isDead = false; // Nos permite saber si esta viva o no 
+  
+    // Methods
     public override void _Ready()
     {
+        // Obtenemos un valor rando entre 1 y 3 para asiganar a la velocidad 
         var random = new RandomNumberGenerator();
         random.Randomize();
         _speed = random.RandiRange(1,3);
 
+        // Inicializamos los componentes
         _spriteController = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         _spawnBulletEnemy = GetNode<Marker2D>("SpawnBullet");
     }
 
     public override void _PhysicsProcess(double delta)
     {
+        // Con la velocidad asiganda movemos la nave en el eje "y"
         Position += new Vector2(0, _speed);
+
+        // Destruimos la nave si sobrepasa los 720 pixeles
         if(Position.Y > 720)
         {
             QueueFree();
         }
+
         Shoot();
     }
 

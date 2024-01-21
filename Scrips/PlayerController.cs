@@ -71,6 +71,11 @@ public partial class PlayerController : CharacterBody2D
             isAlive = false;
             QueueFree();
         }
+
+        if(body.IsInGroup("PowerUp"))
+        {
+            GD.Print("Obtuve un PowerUp");
+        }
     }
 
 }

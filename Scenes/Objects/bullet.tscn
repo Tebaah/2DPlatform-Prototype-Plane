@@ -4,15 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://c2lblw7cb3ey2" path="res://Assets/kenney_pixel-shmup/Tiles/tile_0000.png" id="1_wlroe"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4c6js"]
-radius = 2.0
-height = 14.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gu1fm"]
 radius = 3.0
 height = 16.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gu1fm"]
+radius = 3.0
+height = 14.0
+
 [node name="Bullet" type="CharacterBody2D" groups=["Bullet"]]
-position = Vector2(227, 653)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_a8ej4")
@@ -29,6 +28,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_gu1fm")
 
 [connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]

@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://Scrips/BulletEnemy.cs" id="1_q0m8v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_svlch"]
-radius = 2.0
-height = 12.0
+radius = 3.0
+height = 16.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_exohl"]
 radius = 3.0
@@ -23,9 +23,10 @@ texture = ExtResource("1_ccinr")
 shape = SubResource("CapsuleShape2D_svlch")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_exohl")
 
 [connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]

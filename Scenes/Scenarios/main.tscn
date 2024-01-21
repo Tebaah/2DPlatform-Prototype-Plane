@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs6qe8oxhya5y"]
+[gd_scene load_steps=8 format=3 uid="uid://bs6qe8oxhya5y"]
 
 [ext_resource type="PackedScene" uid="uid://cvchk5r14oxvq" path="res://Scenes/Objects/player.tscn" id="1_06etr"]
 [ext_resource type="PackedScene" uid="uid://bxx5gs64rff5h" path="res://Scenes/Objects/scenario.tscn" id="2_7yka7"]
 [ext_resource type="PackedScene" uid="uid://dyuu3q56lgjp0" path="res://Scenes/Objects/enemy.tscn" id="3_14v6u"]
 [ext_resource type="Script" path="res://Scrips/EnemyRespawn.cs" id="3_eom78"]
+[ext_resource type="Script" path="res://Scrips/PowerUpSpawn.cs" id="5_sw2ia"]
 [ext_resource type="Script" path="res://Scrips/GameManager.cs" id="5_x74n7"]
+[ext_resource type="PackedScene" uid="uid://2eoph58crj0o" path="res://Scenes/Objects/powerUp.tscn" id="6_v638t"]
 
 [node name="Main" type="Node"]
-metadata/_edit_horizontal_guides_ = [-20.0]
 
 [node name="Scenario" parent="." instance=ExtResource("2_7yka7")]
 speed = 0.5
@@ -21,12 +22,18 @@ enemy = ExtResource("3_14v6u")
 
 [node name="SpawnEnemy" type="Marker2D" parent="EnemyRespawn"]
 
-[node name="GameManager" type="Node" parent="EnemyRespawn" node_paths=PackedStringArray("target", "_gameOverLabel")]
+[node name="PowerUpSpawn" type="Node" parent="."]
+script = ExtResource("5_sw2ia")
+powerUp = ExtResource("6_v638t")
+
+[node name="SpawnPowerUp" type="Marker2D" parent="PowerUpSpawn"]
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("target", "_gameOverLabel")]
 script = ExtResource("5_x74n7")
-target = NodePath("../../Player")
+target = NodePath("../Player")
 _gameOverLabel = NodePath("Control/GameOver")
 
-[node name="Control" type="Control" parent="EnemyRespawn/GameManager"]
+[node name="Control" type="Control" parent="GameManager"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +41,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameOver" type="Label" parent="EnemyRespawn/GameManager/Control"]
+[node name="GameOver" type="Label" parent="GameManager/Control"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
