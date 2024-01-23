@@ -64,7 +64,7 @@ public partial class PlayerController : CharacterBody2D
 
     }
 
-    public void OnBodyEntered(CharacterBody2D body)
+    public void OnBodyEntered(Area2D body)
     {
         if(body.IsInGroup("Enemy") || body.IsInGroup("BulletEnemy"))
         {
@@ -75,6 +75,12 @@ public partial class PlayerController : CharacterBody2D
 
     public async void OnAreaEntered(Area2D area)
     {
+        if(area.IsInGroup("Enemy") || area.IsInGroup("BulletEnemy"))
+        {
+            isAlive = false;
+            QueueFree();
+        }
+
         if(area.IsInGroup("PowerUp"))
         {
             _indexBullet = 1;

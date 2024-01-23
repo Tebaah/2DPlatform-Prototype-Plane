@@ -1,22 +1,25 @@
 using Godot;
 using System;
 
+
 public partial class GameManager : Node
 {
    [Export]public PlayerController target;
-   [Export]public Label _gameOverLabel;
-
-    public override void _Ready()
-    {
-
-    }
-
+   [Export]public Label gameOverLabel;
+   [Export]public Button buttonMenu;
+   
 
     public override void _Process(double delta)
     {
         if(target.isAlive == false)
         {
-            _gameOverLabel.Visible = true;
+            gameOverLabel.Visible = true;
+            buttonMenu.Visible = true;
         }
+    }
+
+    public void OnPressedButton()
+    {
+        GetTree().ChangeSceneToFile("res://Scenes/Scenarios/menu.tscn");
     }
 }
