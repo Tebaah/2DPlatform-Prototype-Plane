@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs6qe8oxhya5y"]
+[gd_scene load_steps=9 format=3 uid="uid://bs6qe8oxhya5y"]
 
 [ext_resource type="PackedScene" uid="uid://cvchk5r14oxvq" path="res://Scenes/Objects/player.tscn" id="1_06etr"]
 [ext_resource type="PackedScene" uid="uid://bxx5gs64rff5h" path="res://Scenes/Objects/scenario.tscn" id="2_7yka7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scrips/PowerUpSpawn.cs" id="5_sw2ia"]
 [ext_resource type="Script" path="res://Scrips/GameManager.cs" id="5_x74n7"]
 [ext_resource type="PackedScene" uid="uid://cm8ps2y18egcd" path="res://Scenes/Objects/powerUp.tscn" id="6_v638t"]
+[ext_resource type="PackedScene" uid="uid://dml86qj3fvqem" path="res://Scenes/Objects/enemyTank.tscn" id="8_odmo2"]
 
 [node name="Main" type="Node"]
 
@@ -14,7 +15,7 @@
 speed = 0.5
 
 [node name="Player" parent="." instance=ExtResource("1_06etr")]
-position = Vector2(231, 665)
+position = Vector2(231, 664)
 
 [node name="EnemyRespawn" type="Node" parent="."]
 script = ExtResource("3_eom78")
@@ -67,5 +68,8 @@ text = "GAME OVER"
 visible = false
 layout_mode = 2
 text = "MENU"
+
+[node name="EnemyTank" parent="." instance=ExtResource("8_odmo2")]
+position = Vector2(352, 372)
 
 [connection signal="pressed" from="GameManager/Control/VBoxContainer/Button" to="GameManager" method="OnPressedButton"]

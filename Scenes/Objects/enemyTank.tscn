@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dml86qj3fvqem"]
+
+[ext_resource type="Script" path="res://Scrips/EnemyTank.cs" id="1_88544"]
+[ext_resource type="Texture2D" uid="uid://cwdsjtkid1s20" path="res://Assets/kenney_pixel-shmup/Tiles/tile_0018.png" id="1_sn54j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aqsfc"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sn54j")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rcnd"]
+size = Vector2(10, 16)
+
+[node name="EnemyTank" type="Area2D" groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_88544")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_aqsfc")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6rcnd")
+
+[node name="SpawnBullet" type="Marker2D" parent="."]
+position = Vector2(0, 8)
