@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dml86qj3fvqem"]
+[gd_scene load_steps=7 format=3 uid="uid://dml86qj3fvqem"]
 
 [ext_resource type="Script" path="res://Scrips/EnemyTank.cs" id="1_88544"]
 [ext_resource type="Texture2D" uid="uid://cwdsjtkid1s20" path="res://Assets/kenney_pixel-shmup/Tiles/tile_0018.png" id="1_sn54j"]
+[ext_resource type="PackedScene" uid="uid://blao88ug3xflp" path="res://Scenes/Objects/bulletEnemy.tscn" id="2_5ll2c"]
 [ext_resource type="Texture2D" uid="uid://c8j3aqrxsyul3" path="res://Assets/kenney_pixel-shmup/Tiles/tile_0008.png" id="2_77u62"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aqsfc"]
@@ -27,19 +28,21 @@ animations = [{
 size = Vector2(10, 16)
 
 [node name="EnemyTank" type="Area2D" groups=["Enemy"]]
-rotation = 3.14159
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_88544")
+bulletEnemy = ExtResource("2_5ll2c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_aqsfc")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
 shape = SubResource("RectangleShape2D_6rcnd")
 
 [node name="SpawnBullet" type="Marker2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(10, 0)
 
 [connection signal="area_entered" from="." to="." method="OnAreaEnteredTank"]

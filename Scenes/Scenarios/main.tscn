@@ -71,7 +71,6 @@ layout_mode = 2
 text = "MENU"
 
 [node name="EnemyTank" parent="." instance=ExtResource("8_odmo2")]
-position = Vector2(239, 532)
-rotation = -6.28319
+position = Vector2(249, 237)
 
 [connection signal="pressed" from="GameManager/Control/VBoxContainer/Button" to="GameManager" method="OnPressedButton"]

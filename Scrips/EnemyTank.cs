@@ -1,7 +1,5 @@
 using Godot;
 using System;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime;
 
 public partial class EnemyTank : Area2D
 {
@@ -9,27 +7,31 @@ public partial class EnemyTank : Area2D
     private AnimatedSprite2D _spriteController;
     private CollisionShape2D _collisionController;
     private bool _isDead = false;
-    private float _startRotation = 0f;
+    private float _rotation;
+    [Export] public PackedScene bulletEnemy;
+     private bool _canShoot = true;
+     private Marker2D _spawnBulletEnemy;
     public override void _Ready()
     {
         target = (CharacterBody2D)GetParent().GetNode("Player");
         _spriteController = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         _collisionController = GetNode<CollisionShape2D>("CollisionShape2D");
 
-        _startRotation = Rotation;
+        _spawnBulletEnemy = GetNode<Marker2D>("SpawnBullet");
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        LookAtTarget(target);
+        Shoot();
+        LookAtTarget();
+        
     }
 
-    public void LookAtTarget(CharacterBody2D target)
+    public void LookAtTarget()
     {
-        var direction = (target.GlobalPosition - GlobalPosition);
-        var angle = Transform.X.AngleTo(direction);
-        Rotate(angle)
-;    }
+        LookAt(target.Position);
+
+    }
 
     public async void OnAreaEnteredTank(Area2D area)
     {
@@ -42,6 +44,24 @@ public partial class EnemyTank : Area2D
 
             await ToSignal(GetTree().CreateTimer(0.3),"timeout");
             QueueFree();
+        }
+    }
+
+        public async void Shoot()
+    {
+        if(_isDead == false)
+        {
+            if(_canShoot == true)
+            {
+                Area2D newBulettEnemy = (Area2D)bulletEnemy.Instantiate();
+                newBulettEnemy.GlobalPosition = _spawnBulletEnemy.GlobalPosition;
+                GetParent().AddChild(newBulettEnemy);
+
+                _canShoot = false;
+
+                await ToSignal(GetTree().CreateTimer(2.0f), "timeout");
+                _canShoot = true;
+            }
         }
     }
 }
