@@ -20,6 +20,7 @@ position = Vector2(231, 664)
 [node name="EnemyRespawn" type="Node" parent="."]
 script = ExtResource("3_eom78")
 enemy = ExtResource("3_14v6u")
+timeRespawn = 1
 
 [node name="SpawnEnemy" type="Marker2D" parent="EnemyRespawn"]
 
@@ -70,6 +71,7 @@ layout_mode = 2
 text = "MENU"
 
 [node name="EnemyTank" parent="." instance=ExtResource("8_odmo2")]
-position = Vector2(352, 372)
+position = Vector2(239, 532)
+rotation = -6.28319
 
 [connection signal="pressed" from="GameManager/Control/VBoxContainer/Button" to="GameManager" method="OnPressedButton"]

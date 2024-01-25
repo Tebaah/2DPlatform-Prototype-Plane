@@ -4,6 +4,7 @@ using System;
 public partial class EnemyRespawn : Node
 {
     [Export] public PackedScene enemy;
+    [Export] public int timeRespawn;
     private Marker2D _spawnEnemy;
     private bool _canSpawn = true;
     private float _pointX;
@@ -33,7 +34,7 @@ public partial class EnemyRespawn : Node
 
             _canSpawn = false;
 
-            await ToSignal(GetTree().CreateTimer(5), "timeout");
+            await ToSignal(GetTree().CreateTimer(timeRespawn), "timeout");
             _canSpawn = true;
         }
     }
