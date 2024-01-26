@@ -64,15 +64,6 @@ public partial class PlayerController : CharacterBody2D
 
     }
 
-    public void OnBodyEntered(Area2D body)
-    {
-        if(body.IsInGroup("Enemy") || body.IsInGroup("BulletEnemy"))
-        {
-            isAlive = false;
-            QueueFree();
-        }
-    }
-
     public async void OnAreaEntered(Area2D area)
     {
         if(area.IsInGroup("Enemy") || area.IsInGroup("BulletEnemy"))
