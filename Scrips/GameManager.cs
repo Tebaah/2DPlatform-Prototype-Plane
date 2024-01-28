@@ -31,7 +31,7 @@ public partial class GameManager : Node
         score.Text = $"Score: {numScore}";
 
         int lifePlayer = global.lifePlayer;
-        life.Text = $"Life: {lifePlayer}";
+        life.Text = $"{lifePlayer}";
     }
 
     public void OnPressedButton()
