@@ -8,10 +8,12 @@ public partial class EnemyRespawn : Node
     private Marker2D _spawnEnemy;
     private bool _canSpawn = true;
     private float _pointX;
+    private PlayerController _target;
 
     public override void _Ready()
     {
         _spawnEnemy = GetNode<Marker2D>("SpawnEnemy");
+        _target = (PlayerController)GetParent().GetNode("Player");
 
     }
 
@@ -21,7 +23,11 @@ public partial class EnemyRespawn : Node
         random.Randomize();
         _pointX = random.RandiRange(25,455);
         _spawnEnemy.Position = new Vector2(_pointX, 0);
-        SpawnEnemies();
+        
+        if(_target.isAlive == true)
+        {
+            SpawnEnemies();
+        }        
     }
 
     public async void SpawnEnemies()

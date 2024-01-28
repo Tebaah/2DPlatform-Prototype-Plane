@@ -14,9 +14,9 @@ public partial class BulletEnemy : Area2D
         }
     }
 
-    public void OnBodyEntered(Area2D area)
+    public void OnBodyEntered(CharacterBody2D body)
     {
-        if(area.Name == "Player")
+        if(body.Name == "Player")
         {
             QueueFree();
         }

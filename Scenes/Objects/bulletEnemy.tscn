@@ -18,4 +18,4 @@ texture = ExtResource("1_ccinr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_svlch")
 
-[connection signal="area_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

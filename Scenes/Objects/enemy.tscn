@@ -49,3 +49,4 @@ shape = SubResource("CapsuleShape2D_xl63c")
 position = Vector2(0, 14)
 
 [connection signal="area_entered" from="." to="." method="OnBodyEnteredShip"]
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

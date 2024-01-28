@@ -7,7 +7,7 @@ public partial class BulletController : Area2D
     public override void _PhysicsProcess(double delta)
     {
         Position -= new Vector2(0,speed);
-        if(Position.Y < -20)
+        if(Position.Y < -2)
         {
             QueueFree();
         }
@@ -15,6 +15,14 @@ public partial class BulletController : Area2D
     public void OnBodyEntered(CharacterBody2D body)
     {
         if(body.IsInGroup("Enemy"))
+        {
+            QueueFree();
+        }
+    }
+
+    public void OnAreaEntered(Area2D area)
+    {
+        if(area.IsInGroup("Enemy"))
         {
             QueueFree();
         }

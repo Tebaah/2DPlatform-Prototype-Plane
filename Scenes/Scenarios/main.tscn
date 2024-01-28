@@ -14,6 +14,69 @@
 [node name="Scenario" parent="." instance=ExtResource("2_7yka7")]
 speed = 0.5
 
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("target", "gameOverLabel", "buttonMenu", "score", "life")]
+script = ExtResource("5_x74n7")
+target = NodePath("../Player")
+gameOverLabel = NodePath("Control/MenuGameOver/GameOver")
+buttonMenu = NodePath("Control/MenuGameOver/Button")
+score = NodePath("Control/MenuInformation/Score")
+life = NodePath("Control/MenuInformation/Life")
+
+[node name="Control" type="Control" parent="GameManager"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuGameOver" type="VBoxContainer" parent="GameManager/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOver" type="Label" parent="GameManager/Control/MenuGameOver"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "GAME OVER"
+
+[node name="Button" type="Button" parent="GameManager/Control/MenuGameOver"]
+visible = false
+layout_mode = 2
+text = "MENU"
+
+[node name="MenuInformation" type="HBoxContainer" parent="GameManager/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Score" type="Label" parent="GameManager/Control/MenuInformation"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Score:"
+
+[node name="Control" type="Control" parent="GameManager/Control/MenuInformation"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Life" type="Label" parent="GameManager/Control/MenuInformation"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Life:"
+
 [node name="Player" parent="." instance=ExtResource("1_06etr")]
 position = Vector2(231, 664)
 
@@ -31,46 +94,20 @@ timeSpawn = 15
 
 [node name="SpawnPowerUp" type="Marker2D" parent="PowerUpSpawn"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("target", "gameOverLabel", "buttonMenu")]
-script = ExtResource("5_x74n7")
-target = NodePath("../Player")
-gameOverLabel = NodePath("Control/VBoxContainer/GameOver")
-buttonMenu = NodePath("Control/VBoxContainer/Button")
-
-[node name="Control" type="Control" parent="GameManager"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameManager/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GameOver" type="Label" parent="GameManager/Control/VBoxContainer"]
-visible = false
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "GAME OVER"
-
-[node name="Button" type="Button" parent="GameManager/Control/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "MENU"
-
 [node name="EnemyTank" parent="." instance=ExtResource("8_odmo2")]
-position = Vector2(251, 237)
+position = Vector2(48, -176)
+scale = Vector2(2, 2)
 
-[connection signal="pressed" from="GameManager/Control/VBoxContainer/Button" to="GameManager" method="OnPressedButton"]
+[node name="EnemyTank2" parent="." instance=ExtResource("8_odmo2")]
+position = Vector2(144, -272)
+scale = Vector2(2, 2)
+
+[node name="EnemyTank3" parent="." instance=ExtResource("8_odmo2")]
+position = Vector2(336, -272)
+scale = Vector2(2, 2)
+
+[node name="EnemyTank4" parent="." instance=ExtResource("8_odmo2")]
+position = Vector2(432, -176)
+scale = Vector2(2, 2)
+
+[connection signal="pressed" from="GameManager/Control/MenuGameOver/Button" to="GameManager" method="OnPressedButton"]

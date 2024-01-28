@@ -13,7 +13,7 @@ public partial class BulletTank : Area2D
         _direction = Position.DirectionTo(_target.Position);
     }
     public override void _PhysicsProcess(double delta)
-    {             
+    {          
         Position += _direction * 2;
         if(Position.Y > 730)
         {

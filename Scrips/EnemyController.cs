@@ -11,6 +11,7 @@ public partial class EnemyController : Area2D
     private Marker2D _spawnBulletEnemy; // Mira de la nave
     private bool _isDead = false; // Nos permite saber si esta viva o no 
     private CollisionShape2D _myCollision;
+    private Global _global;
   
     // Methods
     public override void _Ready()
@@ -24,6 +25,9 @@ public partial class EnemyController : Area2D
         _spriteController = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         _spawnBulletEnemy = GetNode<Marker2D>("SpawnBullet");
         _myCollision = GetNode<CollisionShape2D>("CollisionShape2D");
+
+        _global = GetNode<Global>("/root/Global");
+
     }
 
     public override void _PhysicsProcess(double delta)
@@ -43,6 +47,20 @@ public partial class EnemyController : Area2D
     public async void OnBodyEnteredShip(Area2D area)
     {
         if(area.IsInGroup("Bullet"))
+        {
+            _myCollision.Visible = false;   
+            _spriteController.Play("death");
+
+            _global.pointsPlayer += 5;
+            
+            _isDead = true;
+            await ToSignal(GetTree().CreateTimer(0.3),"timeout");
+            QueueFree();
+        }
+    }
+    public async void OnBodyEntered(CharacterBody2D body)
+    {
+        if(body.Name == "Player")
         {
             _myCollision.Visible = false;   
             _spriteController.Play("death");

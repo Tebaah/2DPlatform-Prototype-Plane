@@ -9,8 +9,9 @@ public partial class PlayerController : CharacterBody2D
     [Export] public PackedScene[] bullet; // Para instanciar la bala
     private bool _canShoot = true; // Para el temporizador de la bal
     private Marker2D _spawnBullet; // Nos permite disparar desde una ubicacion
-    public bool isAlive = true;
-    private int _indexBullet = 0;
+    public bool isAlive = true; // almacenar estado vivo o muerto (true o false)
+    private int _indexBullet = 0; // contador para determinar el arma 
+    private Global _global;
 
     // Methods
 
@@ -18,6 +19,8 @@ public partial class PlayerController : CharacterBody2D
     {
         screenSize = GetViewportRect().Size;
         _spawnBullet = GetNode<Marker2D>("SpawnBullet");
+
+        _global = GetNode<Global>("/root/Global");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -68,8 +71,13 @@ public partial class PlayerController : CharacterBody2D
     {
         if(area.IsInGroup("Enemy") || area.IsInGroup("BulletEnemy"))
         {
-            isAlive = false;
-            QueueFree();
+            _global.lifePlayer -= 1;
+            
+            if(_global.lifePlayer == 0)
+            {
+                isAlive = false;
+                QueueFree();
+            }
         }
 
         if(area.IsInGroup("PowerUp"))
