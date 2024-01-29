@@ -8,7 +8,7 @@ public partial class BulletTank : Area2D
 
     public override void _Ready()
     {
-        _target = (CharacterBody2D)GetParent().GetNode("Player");
+        _target = (CharacterBody2D)GetParent().GetNode("/root/Main/Player");
         LookAt(_target.Position);
         _direction = Position.DirectionTo(_target.Position);
     }

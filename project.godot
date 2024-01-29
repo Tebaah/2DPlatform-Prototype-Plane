@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Prototype Based On Aero Fighters"
-run/main_scene="res://Scenes/Scenarios/main.tscn"
+run/main_scene="res://Scenes/Scenarios/creditsScenes.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -23,6 +23,7 @@ Global="*res://Scrips/Global.cs"
 
 window/size/viewport_width=480
 window/size/viewport_height=720
+window/size/mode=2
 window/stretch/mode="canvas_items"
 window/handheld/orientation=1
 

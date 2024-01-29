@@ -8,7 +8,7 @@ public partial class ScenarioController : TileMap
     public override void _PhysicsProcess(double delta)
     {
         MoveMap(speed);
-        if(Position.Y == 650) // Al llegar a la posicion detiene el movimiento
+        if(Position.Y == 3600) // Al llegar a la posicion detiene el movimiento
         {
             speed = 0;
         }

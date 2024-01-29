@@ -12,15 +12,18 @@ public partial class EnemyTank : Area2D
      private bool _canShoot = true; // para validar si puede disparar
      private Marker2D _spawnBulletEnemy; // punto de disparo del enemigo
      private float _distanceToEnemy; // almacena la distancia entre el enemigo y el jugador
+     private Global _global;
     public override void _Ready()
     {
         // inicilizamos las variables de almacenamiento para su utilizacion 
-        target = (CharacterBody2D)GetParent().GetNode("Player");
-        _target = (PlayerController)GetParent().GetNode("Player");
+        target = (CharacterBody2D)GetParent().GetNode("/root/Main/Player");
+        _target = (PlayerController)GetParent().GetNode("/root/Main/Player");
         _spriteController = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         _collisionController = GetNode<CollisionShape2D>("CollisionShape2D");
 
         _spawnBulletEnemy = GetNode<Marker2D>("SpawnBullet");
+
+        _global = GetNode<Global>("/root/Global");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -52,8 +55,10 @@ public partial class EnemyTank : Area2D
             // colision desaparece, cambia el sprite y esta muerto para a true            
             _collisionController.Visible = false;
             _spriteController.Play("death");
-            _isDead = true;
 
+            _global.pointsPlayer += 10;
+
+            _isDead = true;
             // se emite senal para destruir el nodo despues de 3 segundos
             await ToSignal(GetTree().CreateTimer(0.3),"timeout");
             QueueFree();

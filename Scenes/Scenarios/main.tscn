@@ -14,6 +14,7 @@
 
 [node name="Scenario" parent="." instance=ExtResource("2_7yka7")]
 speed = 0.5
+metadata/_edit_horizontal_guides_ = [-3600.0]
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("target", "gameOverLabel", "buttonMenu", "score", "life")]
 script = ExtResource("5_x74n7")
@@ -63,9 +64,9 @@ text = "MENU"
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 25.0
+offset_bottom = 34.0
 grow_horizontal = 2
-color = Color(0.533333, 0.533333, 0.533333, 1)
+color = Color(0.121569, 0.121569, 0.121569, 1)
 
 [node name="MenuInformation" type="HBoxContainer" parent="GameManager/Control"]
 layout_mode = 1
@@ -77,6 +78,7 @@ grow_horizontal = 2
 [node name="Score" type="Label" parent="GameManager/Control/MenuInformation"]
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 25
 text = "Score:"
 
 [node name="Control" type="Control" parent="GameManager/Control/MenuInformation"]
@@ -84,17 +86,19 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="GameManager/Control/MenuInformation"]
-position = Vector2(375, 13)
+position = Vector2(376, 18)
 scale = Vector2(0.76, 0.76)
 texture = ExtResource("3_5b7u2")
 
 [node name="Life" type="Label" parent="GameManager/Control/MenuInformation"]
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 25
 text = "0"
 
 [node name="Player" parent="." instance=ExtResource("1_06etr")]
 position = Vector2(231, 664)
+scale = Vector2(1.00454, 1.03084)
 
 [node name="EnemyRespawn" type="Node" parent="."]
 script = ExtResource("3_eom78")
@@ -110,20 +114,78 @@ timeSpawn = 15
 
 [node name="SpawnPowerUp" type="Marker2D" parent="PowerUpSpawn"]
 
-[node name="EnemyTank" parent="." instance=ExtResource("8_odmo2")]
-position = Vector2(48, -176)
-scale = Vector2(2, 2)
+[node name="Tanks" type="Node" parent="."]
 
-[node name="EnemyTank2" parent="." instance=ExtResource("8_odmo2")]
-position = Vector2(144, -272)
-scale = Vector2(2, 2)
+[node name="EnemyTank" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(24, -552)
 
-[node name="EnemyTank3" parent="." instance=ExtResource("8_odmo2")]
-position = Vector2(336, -272)
-scale = Vector2(2, 2)
+[node name="EnemyTank2" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(24, -616)
 
-[node name="EnemyTank4" parent="." instance=ExtResource("8_odmo2")]
-position = Vector2(432, -176)
-scale = Vector2(2, 2)
+[node name="EnemyTank3" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(24, -680)
+
+[node name="EnemyTank4" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(424, -760)
+
+[node name="EnemyTank5" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(424, -824)
+
+[node name="EnemyTank6" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(424, -888)
+
+[node name="EnemyTank7" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(296, -1096)
+
+[node name="EnemyTank8" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(216, -1176)
+
+[node name="EnemyTank9" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(72, -1128)
+
+[node name="EnemyTank10" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(376, -1256)
+
+[node name="EnemyTank11" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(88, -1544)
+
+[node name="EnemyTank12" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(72, -1544)
+
+[node name="EnemyTank13" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(56, -1544)
+
+[node name="EnemyTank14" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(392, -1688)
+
+[node name="EnemyTank15" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(376, -1688)
+
+[node name="EnemyTank16" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(360, -1688)
+
+[node name="EnemyTank17" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(424, -1992)
+
+[node name="EnemyTank18" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(360, -1992)
+
+[node name="EnemyTank19" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(408, -2088)
+
+[node name="EnemyTank20" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(360, -2280)
+
+[node name="EnemyTank21" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(424, -2311)
+
+[node name="EnemyTank22" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(24, -2312)
+
+[node name="EnemyTank23" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(40, -2392)
+
+[node name="EnemyTank24" parent="Tanks" instance=ExtResource("8_odmo2")]
+position = Vector2(120, -2440)
 
 [connection signal="pressed" from="GameManager/Control/MenuGameOver/Button" to="GameManager" method="OnPressedButton"]

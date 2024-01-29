@@ -45,4 +45,7 @@ stretch_mode = 3
 [node name="Label" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "E2ND VIDEOGAMES AND STUDIO"
+text = "E2ND 
+VIDEOGAMES AND STUDIO"
+horizontal_alignment = 1
+vertical_alignment = 1
