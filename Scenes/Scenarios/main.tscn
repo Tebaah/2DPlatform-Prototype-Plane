@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bs6qe8oxhya5y"]
+[gd_scene load_steps=11 format=3 uid="uid://bs6qe8oxhya5y"]
 
 [ext_resource type="PackedScene" uid="uid://cvchk5r14oxvq" path="res://Scenes/Objects/player.tscn" id="1_06etr"]
 [ext_resource type="PackedScene" uid="uid://bxx5gs64rff5h" path="res://Scenes/Objects/scenario.tscn" id="2_7yka7"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scrips/GameManager.cs" id="5_x74n7"]
 [ext_resource type="PackedScene" uid="uid://cm8ps2y18egcd" path="res://Scenes/Objects/powerUp.tscn" id="6_v638t"]
 [ext_resource type="PackedScene" uid="uid://dml86qj3fvqem" path="res://Scenes/Objects/enemyTank.tscn" id="8_odmo2"]
+[ext_resource type="PackedScene" uid="uid://3e8dmpxq0833" path="res://Scenes/Objects/semiBoss.tscn" id="10_4ickx"]
 
 [node name="Main" type="Node"]
 
@@ -187,5 +188,8 @@ position = Vector2(40, -2392)
 
 [node name="EnemyTank24" parent="Tanks" instance=ExtResource("8_odmo2")]
 position = Vector2(120, -2440)
+
+[node name="SemiBoss" parent="." instance=ExtResource("10_4ickx")]
+position = Vector2(230, -26)
 
 [connection signal="pressed" from="GameManager/Control/MenuGameOver/Button" to="GameManager" method="OnPressedButton"]
