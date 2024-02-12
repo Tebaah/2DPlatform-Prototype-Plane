@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://3e8dmpxq0833"]
+[gd_scene load_steps=7 format=3 uid="uid://3e8dmpxq0833"]
 
 [ext_resource type="Script" path="res://Scrips/SemiBoss.cs" id="1_k6ujf"]
 [ext_resource type="Texture2D" uid="uid://c8wfw6sbljvpd" path="res://Assets/kenney_pixel-shmup/Ships/ship_0003.png" id="1_ohb07"]
+[ext_resource type="PackedScene" uid="uid://blao88ug3xflp" path="res://Scenes/Objects/bulletEnemy.tscn" id="2_7nwuo"]
 [ext_resource type="Texture2D" uid="uid://c8j3aqrxsyul3" path="res://Assets/kenney_pixel-shmup/Tiles/tile_0008.png" id="2_w1u45"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jt2lu"]
@@ -32,11 +33,12 @@ rotation = 3.14159
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_k6ujf")
+bulletEnemy = ExtResource("2_7nwuo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_jt2lu")
-animation = &"death"
+animation = &"walk"
 autoplay = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -44,7 +46,7 @@ position = Vector2(0, 2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_cmmnn")
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="SpawnBullet" type="Marker2D" parent="."]
 position = Vector2(0, -20)
 
 [connection signal="area_entered" from="." to="." method="OnBodyEnteredShip"]
