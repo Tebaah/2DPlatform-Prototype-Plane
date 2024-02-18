@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class EnemyRespawn : Node
+public partial class SemiBossRespawn : Node
 {
     [Export] public PackedScene enemy;
     [Export] public int timeRespawn;
@@ -9,25 +9,26 @@ public partial class EnemyRespawn : Node
     private bool _canSpawn = true;
     private float _pointX;
     private PlayerController _target;
-   
+    private Global _global;
+    private float _positionY = 250;
 
     public override void _Ready()
     {
         _spawnEnemy = GetNode<Marker2D>("SpawnEnemy");
         _target = (PlayerController)GetParent().GetNode("Player");
+        _global = GetNode<Global>("/root/Global");
 
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        var random = new RandomNumberGenerator();
-        random.Randomize();
-        _pointX = random.RandiRange(25,455);
-        _spawnEnemy.Position = new Vector2(_pointX, 0);
+        GD.Print(_positionY);
+        _spawnEnemy.Position = new Vector2(240, 0);
         
-        if(_target.isAlive == true)
+        if(_target.isAlive == true && _global.positionScenarioY == _positionY)
         {
             SpawnEnemies();
+            _positionY += 250;
         }        
     }
 
