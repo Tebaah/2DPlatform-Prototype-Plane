@@ -7,8 +7,8 @@ public partial class GameManager : Node
    [Export]public PlayerController target;
    [Export]public Label gameOverLabel;
    [Export]public Button buttonMenu;
-   [Export]public Label score;
-   [Export]public Label life;
+    [Export]public Label score;
+    [Export]public Label life;
    public Global global;
 
 
