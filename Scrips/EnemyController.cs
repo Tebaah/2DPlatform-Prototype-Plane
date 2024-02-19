@@ -12,6 +12,7 @@ public partial class EnemyController : Area2D
     private bool _isDead = false; // Nos permite saber si esta viva o no 
     private CollisionShape2D _myCollision;
     private Global _global;
+    private AudioStreamPlayer2D _audio;
   
     // Methods
     public override void _Ready()
@@ -25,6 +26,7 @@ public partial class EnemyController : Area2D
         _spriteController = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         _spawnBulletEnemy = GetNode<Marker2D>("SpawnBullet");
         _myCollision = GetNode<CollisionShape2D>("CollisionShape2D");
+        _audio = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
 
         _global = GetNode<Global>("/root/Global");
 
@@ -79,7 +81,7 @@ public partial class EnemyController : Area2D
                 Area2D newBulettEnemy = (Area2D)bulletEnemy.Instantiate();
                 newBulettEnemy.GlobalPosition = _spawnBulletEnemy.GlobalPosition;
                 GetParent().AddChild(newBulettEnemy);
-
+                _audio.Play();
                 _canShoot = false;
 
                 await ToSignal(GetTree().CreateTimer(2.0f), "timeout");

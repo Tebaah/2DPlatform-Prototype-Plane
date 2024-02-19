@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyuu3q56lgjp0"]
+[gd_scene load_steps=8 format=3 uid="uid://dyuu3q56lgjp0"]
 
 [ext_resource type="Script" path="res://Scrips/EnemyController.cs" id="1_6uag5"]
 [ext_resource type="Texture2D" uid="uid://ob7sxptnldjd" path="res://Assets/kenney_pixel-shmup/Ships/ship_0000.png" id="1_p2w5k"]
 [ext_resource type="PackedScene" uid="uid://blao88ug3xflp" path="res://Scenes/Objects/bulletEnemy.tscn" id="2_dybjb"]
 [ext_resource type="Texture2D" uid="uid://cdslyh6xid6em" path="res://Assets/kenney_pixel-shmup/Tiles/tile_0005.png" id="2_pbge0"]
+[ext_resource type="AudioStream" uid="uid://dx00d0k6fu26s" path="res://Assets/Sounds/alienshoot1.wav" id="5_r45jl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qm4yr"]
 animations = [{
@@ -47,6 +48,11 @@ shape = SubResource("CapsuleShape2D_xl63c")
 
 [node name="SpawnBullet" type="Marker2D" parent="."]
 position = Vector2(0, 14)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_r45jl")
+volume_db = -9.98
+pitch_scale = 0.51
 
 [connection signal="area_entered" from="." to="." method="OnBodyEnteredShip"]
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

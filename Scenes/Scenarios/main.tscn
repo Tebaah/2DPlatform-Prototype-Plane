@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bs6qe8oxhya5y"]
+[gd_scene load_steps=13 format=3 uid="uid://bs6qe8oxhya5y"]
 
 [ext_resource type="PackedScene" uid="uid://cvchk5r14oxvq" path="res://Scenes/Objects/player.tscn" id="1_06etr"]
 [ext_resource type="PackedScene" uid="uid://bxx5gs64rff5h" path="res://Scenes/Objects/scenario.tscn" id="2_7yka7"]
 [ext_resource type="Texture2D" uid="uid://cbg1hj8vv8ieo" path="res://Assets/kenney_pixel-shmup/Ships/ship_0014.png" id="3_5b7u2"]
 [ext_resource type="PackedScene" uid="uid://dyuu3q56lgjp0" path="res://Scenes/Objects/enemy.tscn" id="3_14v6u"]
 [ext_resource type="Script" path="res://Scrips/EnemyRespawn.cs" id="3_eom78"]
+[ext_resource type="AudioStream" uid="uid://cy438ihlw6yqt" path="res://Assets/Sounds/epic-dance-141200.mp3" id="4_foy7n"]
 [ext_resource type="Script" path="res://Scrips/PowerUpSpawn.cs" id="5_sw2ia"]
 [ext_resource type="Script" path="res://Scrips/GameManager.cs" id="5_x74n7"]
 [ext_resource type="PackedScene" uid="uid://cm8ps2y18egcd" path="res://Scenes/Objects/powerUp.tscn" id="6_v638t"]
@@ -97,6 +98,11 @@ layout_mode = 2
 size_flags_horizontal = 6
 theme_override_font_sizes/font_size = 25
 text = "0"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GameManager"]
+stream = ExtResource("4_foy7n")
+volume_db = -20.0
+autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("1_06etr")]
 position = Vector2(231, 664)

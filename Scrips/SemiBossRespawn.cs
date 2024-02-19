@@ -22,7 +22,6 @@ public partial class SemiBossRespawn : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        GD.Print(_positionY);
         _spawnEnemy.Position = new Vector2(240, 0);
         
         if(_target.isAlive == true && _global.positionScenarioY == _positionY)

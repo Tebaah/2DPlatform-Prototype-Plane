@@ -12,6 +12,7 @@ public partial class PlayerController : CharacterBody2D
     public bool isAlive = true; // almacenar estado vivo o muerto (true o false)
     private int _indexBullet = 0; // contador para determinar el arma 
     private Global _global;
+    private AudioStreamPlayer2D _audio;
 
     // Methods
 
@@ -19,6 +20,7 @@ public partial class PlayerController : CharacterBody2D
     {
         screenSize = GetViewportRect().Size;
         _spawnBullet = GetNode<Marker2D>("SpawnBullet");
+        _audio = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
 
         _global = GetNode<Global>("/root/Global");
     }
@@ -56,6 +58,7 @@ public partial class PlayerController : CharacterBody2D
                 Area2D newBullet = (Area2D)bullet[_indexBullet].Instantiate();
                 newBullet.GlobalPosition = _spawnBullet.GlobalPosition;
                 GetParent().AddChild(newBullet);
+                _audio.Play();
                 
                 _canShoot = false;
 
