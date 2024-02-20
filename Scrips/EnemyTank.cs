@@ -29,7 +29,6 @@ public partial class EnemyTank : Area2D
     public override void _PhysicsProcess(double delta)
     {
         // le damos un movimento al tank en direccion positivo eje y
-        // TODO: se debe modificar para que el valor de velocidad sea tomado desde el script de tilemap
         Position += new Vector2(0, 0.5f);     
 
         // si el jugador esta vivo ejecutamos las funciones
@@ -42,7 +41,7 @@ public partial class EnemyTank : Area2D
 
     public void LookAtTarget()
     {
-        // el nodo (tank) apunta en direccion al jugador
+        // El nodo (tank) apunta en direccion al jugador
         LookAt(target.Position);
 
     }
@@ -70,18 +69,18 @@ public partial class EnemyTank : Area2D
         // calculamos la distancia entre el enemigo y el jugador para ser utilizado
         _distanceToEnemy = Position.DistanceTo(target.Position);
 
-        // si no esta muerto y la distancia es menor a (TODO: determinar distancia) ejecuta el codigo
+        // si no esta muerto y la distancia es "menor a" ejecuta el codigo
         if(_isDead == false && _distanceToEnemy <= 600)
         {
-            // si puede disprar ejecuta el codigo
+            // si puede disparar ejecuta el codigo
             if(_canShoot == true)
             {
-                // se isntancia una nueva municion que se agrega al punto de disparo como hijo
+                // se instancia una nueva municion que se agrega al punto de disparo como hijo
                 Area2D newBulettEnemy = (Area2D)bulletEnemy.Instantiate();
                 newBulettEnemy.GlobalPosition = _spawnBulletEnemy.GlobalPosition;
                 GetParent().AddChild(newBulettEnemy);
 
-                // negamos un disparo inmediato pasan variable a false
+                // negamos un disparo inmediato pasando variable a false
                 _canShoot = false;
 
                 // emitimos una senal de 3 segundos para cambiar la variable a true y autorizar a disparar nuevamente 
