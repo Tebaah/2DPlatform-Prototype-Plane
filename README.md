@@ -5,7 +5,7 @@
 <img src="https://i.postimg.cc/KzYggSTm/c-sharp-svgrepo-com.png" width="100" height= "100"/>
 </p>
 
-## Configuraciones basicas
+## Configuraciones basicas del proyecto
 
 Si quieres tomar como referencia e iniciar desde aqui debes realizar las siguietnes configuraciones.
 
